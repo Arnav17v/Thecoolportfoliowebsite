@@ -32,7 +32,7 @@ export default function Home() {
     {
       title: "StudyLens",
       subtitle: "AI Study Monitor",
-      link: "https://tcpw.vercel.app/",
+      link: "https://lockedin-eight.vercel.app/",
       repo: "https://github.com/Arnav17v/studylens-model-app",
       description: [
         "Built a desktop application for analyzing student focus via real-time local webcam processing using Python, OpenCV, dlib, and DeepFace.",
