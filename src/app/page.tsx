@@ -30,6 +30,19 @@ export default function Home() {
       ],
     },
     {
+      title: "StudyLens",
+      subtitle: "AI Study Monitor",
+      link: "https://tcpw.vercel.app/",
+      repo: "https://github.com/Arnav17v/studylens-model-app",
+      description: [
+        "Built a desktop application for analyzing student focus via real-time local webcam processing using Python, OpenCV, dlib, and DeepFace.",
+        "Integrated drowsiness detection (Eye Aspect Ratio using dlib) and facial emotion analysis (DeepFace) for comprehensive attention monitoring.",
+        "Designed a Tkinter-based GUI displaying real-time focus time, wasted time, drowsy intervals, and attention scores.",
+        "Implemented optional session statistics upload to a secure FastAPI backend while maintaining core processing locally for privacy.",
+        "Packaged the application into distributable executables for macOS using PyInstaller for easy deployment.",
+      ],
+    },
+    {
       title: "Sumo Snack",
       subtitle: "Japanese Cuisine Restaurant Platform",
       link: "https://sumo-snack.vercel.app",
