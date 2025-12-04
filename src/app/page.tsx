@@ -76,7 +76,7 @@ export default function Home() {
             <div className="py-6 flex justify-center items-center text-3xl bg-col1 rounded-xl">
               <a href="#skills">Skills</a>
             </div>
-            <a href="https://drive.google.com/file/d/1e9H3HjV_EocDohUWXYQOkOst_ksvwjI3/view?usp=sharing">
+            <a href="https://drive.google.com/file/d/1X6ceUm1taQT-3Lrk6bby9r9UneOwTlxp/view?usp=sharing">
               <div className="py-6 flex justify-center items-center text-3xl bg-col1 rounded-xl">
                 Resume
               </div>
