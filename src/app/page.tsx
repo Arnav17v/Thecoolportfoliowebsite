@@ -1,87 +1,156 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Github, Linkedin, Mail, Phone } from "lucide-react";
+import {
+  Award,
+  BriefcaseBusiness,
+  CalendarDays,
+  Code2,
+  ExternalLink,
+  Github,
+  Linkedin,
+  Mail,
+  Phone,
+} from "lucide-react";
 
 export default function Home() {
-  const experience = {
-    title: "Frontend Developer (Freelance)",
-    company: "VR Food Products",
-    link: "https://vrfoodproducts.com",
-    repo: "https://github.com/pcell62/vrfoodproducts",
-    description: [
-      "Developed a fully responsive e-commerce website with React.js, Next.js, Tailwind CSS, and TypeScript, improving user engagement by 40%.",
-      "Designed catalog, landing, about us, and product pages to showcase 50+ products with detailed descriptions.",
-      "Deployed on Hostinger, achieving 99.9% uptime and reducing load times by 30%.",
-      "Enhanced performance to score 90 on Google Lighthouse for desktop.",
-    ],
-  };
-  const projects = [
+  const experience = [
     {
-      title: "AD-Assist",
-      subtitle: "College Add and Drop Platform",
-      link: "https://ad-eta-vert.vercel.app",
-      repo: "https://github.com/Arnav17v/ad",
+      title: "Fullstack Developer (Freelance)",
+      company: "DexiChat",
+      period: "Jan 2026",
+      location: "Remote",
+      summary:
+        "Built Shopify commerce infrastructure for a multi-tenant SaaS backend and improved AI-assisted shopping flows.",
+      highlights: ["31 GraphQL ops", "11 Shopify tools", "Hybrid search"],
       description: [
-        "Built a platform to facilitate class slot and teacher exchanges within college communities using Next.js, Tailwind CSS, and Firebase.",
-        "Designed and implemented features including request posting, contact sharing, and full CRUD functionality.",
-        "Integrated Firebase Authentication for secure user login and access.",
-        "Deployed on Vercel, ensuring seamless performance and high availability.",
+        "Built and maintained 31 GraphQL operations across Shopify Admin and Storefront APIs for products, variants, customers, carts, checkout, and orders on a Node.js/Express multi-tenant SaaS backend.",
+        "Improved LLM commerce flows with 11 Shopify tool definitions across search, cart, order preparation, order confirmation, and availability workflows.",
+        "Enhanced product search with hybrid retrieval using Storefront predictive search and semantic vector fallback with pgvector.",
       ],
     },
+    {
+      title: "Fullstack Developer (Internship)",
+      company: "DexoDash",
+      period: "May 2025 - July 2025",
+      location: "Remote",
+      summary:
+        "Developed a large-scale admin and storefront platform with AI content tools, PostgreSQL data modeling, and multilingual support.",
+      highlights: ["55+ APIs", "23+ DB models", "46+ AI admin components"],
+      description: [
+        "Built a scalable Next.js 15 app with 55+ API endpoints and 23+ PostgreSQL models, including cart and checkout flows.",
+        "Integrated Google Gemini for AI-powered content generation across 46+ admin components with live rich text editor functionality.",
+        "Implemented i18n with English/Hebrew support, RTL layout, currency conversion, and RBAC with fine-grained permissions.",
+      ],
+    },
+  ];
+
+  const projects = [
     {
       title: "StudyLens",
       subtitle: "AI Study Monitor",
       link: "https://lockedin-eight.vercel.app/",
       repo: "https://github.com/Arnav17v/studylens-model-app",
-      description: [
-        "Built a desktop application for analyzing student focus via real-time local webcam processing using Python, OpenCV, dlib, and DeepFace.",
-        "Integrated drowsiness detection (Eye Aspect Ratio using dlib) and facial emotion analysis (DeepFace) for comprehensive attention monitoring.",
-        "Designed a Tkinter-based GUI displaying real-time focus time, wasted time, drowsy intervals, and attention scores.",
-        "Implemented optional session statistics upload to a secure FastAPI backend while maintaining core processing locally for privacy.",
-        "Packaged the application into distributable executables for macOS using PyInstaller for easy deployment.",
+      pitch: "Privacy-first desktop app that monitors student focus locally through real-time webcam analysis.",
+      tech: ["Python", "OpenCV", "dlib", "DeepFace", "FastAPI"],
+      impact: [
+        {
+          label: "Built",
+          text: "Real-time webcam focus tracking with a Tkinter dashboard.",
+        },
+        {
+          label: "Integrated",
+          text: "Drowsiness detection and facial emotion analysis for attention scoring.",
+        },
+        {
+          label: "Shipped",
+          text: "macOS executables with optional secure backend session uploads.",
+        },
       ],
     },
     {
-      title: "Sumo Snack",
-      subtitle: "Japanese Cuisine Restaurant Platform",
-      link: "https://sumo-snack.vercel.app",
-      repo: "https://github.com/Arnav17v/sumo-snack",
-      description: [
-        "Developed a Japanese cuisine restaurant platform showcasing 20+ menu items with a minimalist, elegant design using Next.js and Tailwind CSS.",
-        "Created a main landing page, menu page, and order online page, improving user engagement by 30% through intuitive navigation.",
-        "Implemented features like menu sorting options, search functionality, and a cart system for seamless checkout, reducing user task time by 25%.",
+      title: "Real-Time Drowsiness Detection System",
+      subtitle: "Collaborative Computer Vision Monitoring System",
+      repo: "https://github.com/Arnav17v",
+      pitch: "Production-ready monitoring platform for multi-device drowsiness detection and live operator visibility.",
+      tech: ["Docker", "AWS EC2", "Flask", "Socket.IO", "Python"],
+      impact: [
+        {
+          label: "Containerized",
+          text: "Multi-stage Docker builds with health checks and persistent model storage.",
+        },
+        {
+          label: "Automated",
+          text: "AWS EC2 deployment with Bash scripts, systemd restart, and UFW rules.",
+        },
+        {
+          label: "Architected",
+          text: "Central Flask dashboard with real-time streaming and REST APIs.",
+        },
       ],
     },
   ];
+
+  const skillGroups = [
+    {
+      title: "Languages",
+      skills: ["Python", "C++", "Java"],
+    },
+    {
+      title: "Frontend",
+      skills: ["React.js", "Next.js", "HTML5", "CSS3", "Tailwind CSS"],
+    },
+    {
+      title: "Backend",
+      skills: ["Node.js", "Express.js", "Flask", "FastAPI"],
+    },
+    {
+      title: "Databases",
+      skills: ["MySQL", "PostgreSQL", "pgvector"],
+    },
+    {
+      title: "Libraries",
+      skills: ["NumPy", "Pandas", "Matplotlib", "OpenCV"],
+    },
+    {
+      title: "Tools & Platforms",
+      skills: ["Git", "GitHub", "Docker", "Vercel", "AWS", "GraphQL"],
+    },
+  ];
+
+  const certifications = [
+    "DevOps Fundamentals - IBM, Credential ID: CEDEV2IN",
+    "DevOps, Agile and Design Thinking - IBM, Credential ID: CEDEA1IN",
+  ];
+
   return (
     <div className="md:h-screen md:flex md:items-center md:justify-center">
       <div className="overflow-hidden relative sm:flex-grow-0 sm:w-fit sm:h-lvh">
         <div className="p-5 md:pr-[3rem]">
           <div className="pb-4">
             <div className="text-3xl">hi I'm</div>
-            <div className="text-8xl max-w-fit md:text-[10rem]">
+            <div className="text-7xl max-w-fit sm:text-8xl md:text-[10rem]">
               <span className="px-2">Arnav</span> <br />{" "}
               <span className="bg-col2 text-col5 px-2 rounded-xl">Verma</span>
             </div>
           </div>
           <div className="text-2xl mt-3 max-w-[30rem]">
-            Hello and Welcome to my portfolio. Here are some quick links you
-            would be interested in 👇👇👇👇
+            Software developer building AI-powered web products, commerce
+            backends, and computer vision tools.
           </div>
           <div className="grid grid-cols-2 text-col5 gap-1 mt-10">
-            <div className="py-6 flex justify-center items-center text-3xl bg-col1 rounded-xl">
+            <div className="py-5 px-3 flex justify-center items-center text-2xl sm:text-3xl bg-col1 rounded-xl">
               <a href="#projects">Projects</a>
             </div>
-            <div className="py-6 flex justify-center items-center text-3xl bg-col1 rounded-xl">
+            <div className="py-5 px-3 flex justify-center items-center text-2xl sm:text-3xl bg-col1 rounded-xl">
               <a href="#skills">Skills</a>
             </div>
-            <a href="https://drive.google.com/file/d/1X6ceUm1taQT-3Lrk6bby9r9UneOwTlxp/view?usp=sharing">
-              <div className="py-6 flex justify-center items-center text-3xl bg-col1 rounded-xl">
+            <a href="/resume.pdf" target="_blank">
+              <div className="py-5 px-3 flex justify-center items-center text-2xl sm:text-3xl bg-col1 rounded-xl">
                 Resume
               </div>
             </a>
-            <div className="py-6 flex justify-center items-center text-3xl bg-col1 rounded-xl">
+            <div className="py-5 px-3 flex justify-center items-center text-2xl sm:text-3xl bg-col1 rounded-xl">
               <a href="#contact">Contact Me</a>
             </div>
           </div>
@@ -128,78 +197,138 @@ export default function Home() {
       <div className="overflow-y-scroll md:w-1/2 ml-0 flex-grow h-lvh ">
         <div
           className="md:text-8xl text-6xl pl-5 bg-col1 text-col5 py-5"
-          id="skills"
+          id="aboutme"
         >
-          Skills
-          <div className="grid grid-cols-2 text-2xl sm:grid-cols-3 gap-6">
-            {/* Programming Languages */}
+          About Me
+          <section className="text-3xl">
+            <h2 className="text-2xl font-semibold mb-4">Education</h2>
             <div>
-              <h3 className="font-semibold">Programming Languages</h3>
-              <ul className="list-disc pl-4">
-                <li>Python</li>
-                <li>C++</li>
-                <li>TypeScript</li>
-              </ul>
+              Bachelor of Technology in Computer Science and Engineering
             </div>
-
-            {/* Frontend */}
-            <div>
-              <h3 className="font-semibold">Frontend</h3>
-              <ul className="list-disc pl-4">
-                <li>Next.js</li>
-                <li>React.js</li>
-                <li>Tailwind CSS</li>
-              </ul>
-            </div>
-
-            {/* Backend */}
-            <div>
-              <h3 className="font-semibold">Backend</h3>
-              <ul className="list-disc pl-4">
-                <li>Firebase</li>
-              </ul>
-            </div>
-
-            {/* Libraries & Tools */}
-            <div>
-              <h3 className="font-semibold">Libraries & Tools</h3>
-              <ul className="list-disc pl-4">
-                <li>NumPy</li>
-                <li>Pandas</li>
-                <li>Matplotlib</li>
-              </ul>
-            </div>
-          </div>
+            <p className="text-muted-foreground">
+              Vellore Institute of Technology, Vellore
+            </p>
+            <p className="text-muted-foreground">Expected Graduation: 2026</p>
+            <p className="font-medium">CGPA: 8.85 / 10.0</p>
+          </section>
+          <section className="mt-8 text-2xl pr-5">
+            <h2 className="text-3xl font-semibold mb-4">Achievement</h2>
+            <Card className="bg-col5 text-col1 border-4 border-col4 shadow-none">
+              <CardHeader>
+                <CardTitle className="flex items-start gap-3 text-2xl">
+                  <Award className="h-7 w-7 shrink-0" />
+                  Patent Application Published
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-xl">
+                <p className="font-semibold">
+                  System and Method for Lightweight Machine Learning Based
+                  Intrusion Detection in Agricultural IoT Networks
+                </p>
+                <p className="mt-3 text-muted-foreground">
+                  Indian Patent Application No. 202541131653 A · Filed Dec 2025,
+                  Published Jan 2026
+                </p>
+              </CardContent>
+            </Card>
+          </section>
+          <section className="mt-8 text-2xl pr-5">
+            <h2 className="text-3xl font-semibold mb-4">Certifications</h2>
+            <ul className="list-disc pl-6 space-y-3">
+              {certifications.map((certification) => (
+                <li key={certification}>{certification}</li>
+              ))}
+            </ul>
+          </section>
         </div>
         <div className="bg-col4 text-col5 text-xl font-bold w-full whitespace-nowrap overflow-hidden">
           · ★ Projects ★ · ★ Projects ★ · ★ Projects ★ · ★ Projects ★ · ★
           Projects ★ · ★ Projects ★ · ★ Projects ★ · ★ Projects ★ · ★ Projects ★
           · ★ Projects ★ · ★ Projects ★ ·
         </div>
-        <div className="md:text-8xl text-6xl ml-5 my-5" id="projects">
-          Projects
+        <div className="md:text-8xl text-6xl ml-5 my-5">
+          Work Experience
+          <section className="relative mt-5 grid gap-6 pr-3 text-xl before:absolute before:left-4 before:top-4 before:hidden before:h-[calc(100%-2rem)] before:w-1 before:bg-col4 md:before:block">
+            {experience.map((role) => (
+              <Card
+                className="relative bg-col5 border-4 border-col4 shadow-none transition-all duration-500 hover:-translate-y-1 hover:bg-col4 hover:text-col5 md:ml-12"
+                key={role.company}
+              >
+                <div className="absolute left-[-3.25rem] top-8 hidden h-8 w-8 items-center justify-center rounded-full border-4 border-col4 bg-col2 text-col5 md:flex">
+                  <BriefcaseBusiness className="h-4 w-4" />
+                </div>
+                <CardHeader>
+                  <CardTitle>
+                    <span className="flex flex-col gap-3 text-col1">
+                      <span className="text-3xl leading-none md:text-4xl">
+                        {role.company}
+                      </span>
+                      <span className="flex flex-col gap-2 text-lg font-semibold sm:flex-row sm:items-center sm:justify-between">
+                        <span>{role.title}</span>
+                        <span className="inline-flex w-fit items-center gap-2 rounded-md bg-col1 px-3 py-1 text-sm text-col5">
+                          <CalendarDays className="h-4 w-4" />
+                          {role.period}
+                        </span>
+                      </span>
+                    </span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-5">
+                  <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">
+                    {role.summary}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {role.highlights.map((highlight) => (
+                      <span
+                        className="rounded-md border-2 border-col4 bg-col1 px-3 py-1 text-sm font-bold text-col5"
+                        key={highlight}
+                      >
+                        {highlight}
+                      </span>
+                    ))}
+                    <span className="rounded-md border-2 border-col4 px-3 py-1 text-sm font-bold">
+                      {role.location}
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </section>
+          <div className="text-5xl font-bold pt-8" id="projects">
+            Projects
+          </div>
           <section className="mt-5 text-xl">
             <div className="grid gap-6">
               {projects.map((project) => (
                 <Card
-                  className="bg-col5 hover:bg-col4 hover:text-col5 transition-all duration-500 border-4 mr-3 border-col4 shadow-none"
+                  className="group overflow-hidden bg-col5 transition-all duration-500 hover:-translate-y-1 hover:bg-col4 hover:text-col5 border-4 mr-3 border-col4 shadow-none"
                   key={project.title}
                 >
-                  <CardHeader>
+                  <CardHeader className="pb-3">
                     <CardTitle>
-                      <span className="flex  text-col1 items-center justify-between">
-                        {project.title}
-                        <div className="flex gap-2">
-                          <Button
-                            className="bg-col1 text-col5"
-                            variant="outline"
-                            size="sm"
-                            asChild
-                          >
-                            <Link href={project.link} target="_blank">
-                              Visit Site
-                            </Link>
-                          </Button>
+                      <span className="flex flex-col gap-4 text-col1 sm:flex-row sm:items-start sm:justify-between">
+                        <span>
+                          <span className="flex items-center gap-3 text-3xl md:text-4xl">
+                            <Code2 className="h-8 w-8 shrink-0" />
+                            {project.title}
+                          </span>
+                          <span className="mt-2 block text-lg font-semibold text-muted-foreground">
+                            {project.subtitle}
+                          </span>
+                        </span>
+                        <div className="flex shrink-0 gap-2">
+                          {"link" in project && project.link ? (
+                            <Button
+                              className="bg-col1 text-col5"
+                              variant="outline"
+                              size="sm"
+                              asChild
+                            >
+                              <Link href={project.link} target="_blank">
+                                <ExternalLink className="h-4 w-4" />
+                              </Link>
+                            </Button>
+                          ) : null}
                           <Button
                             className="bg-col1 text-col5"
                             variant="outline"
@@ -214,89 +343,61 @@ export default function Home() {
                       </span>
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4">
-                      {project.subtitle}
+                  <CardContent className="space-y-5">
+                    <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">
+                      {project.pitch}
                     </p>
-                    <ul className="list-disc pl-6 space-y-2">
-                      {project.description.map((point, index) => (
-                        <li key={index}>{point}</li>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech) => (
+                        <span
+                          className="rounded-md bg-col2 px-3 py-1 text-sm font-bold text-col5"
+                          key={tech}
+                        >
+                          {tech}
+                        </span>
                       ))}
-                    </ul>
+                    </div>
+                    <div className="grid gap-3">
+                      {project.impact.map((item) => (
+                        <div
+                          className="flex flex-col gap-3 rounded-md border-2 border-col4 bg-col5/70 p-3 text-col1 sm:flex-row sm:items-start"
+                          key={item.label}
+                        >
+                          <span className="w-fit shrink-0 rounded bg-col1 px-2 py-1 text-sm font-bold uppercase tracking-normal text-col5">
+                            {item.label}
+                          </span>
+                          <span className="min-w-0 flex-1">{item.text}</span>
+                        </div>
+                      ))}
+                    </div>
                   </CardContent>
                 </Card>
               ))}
             </div>
           </section>
-          <div className="text-5xl font-bold pt-3">Work Experience</div>
-          <section className="mt-1 text-xl">
-            <Card
-              className=" hover:bg-col4 hover:text-col5 transition-all duration-500 bg-col5  border-4 mr-3 border-col4 shadow-none"
-              key={experience.title}
-            >
-              <CardHeader>
-                <CardTitle>
-                  <span className="flex  text-col1 items-center justify-between">
-                    {experience.title}
-                    <div className="flex gap-2">
-                      <Button
-                        className="bg-col1 text-col5"
-                        variant="outline"
-                        size="sm"
-                        asChild
-                      >
-                        <Link href={experience.link} target="_blank">
-                          Visit Site
-                        </Link>
-                      </Button>
-                      <Button
-                        className="bg-col1 text-col5"
-                        variant="outline"
-                        size="sm"
-                        asChild
-                      >
-                        <Link href={experience.repo} target="_blank">
-                          <Github className="h-4 w-4" />
-                        </Link>
-                      </Button>
-                    </div>
-                  </span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground mb-4">
-                  {experience.company}
-                </p>
-                <ul className="list-disc pl-6 space-y-2">
-                  {experience.description.map((point, index) => (
-                    <li key={index}>{point}</li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </section>
         </div>
         <div className="bg-col4 text-col5 text-xl font-bold w-full whitespace-nowrap overflow-hidden">
-          · ★ About ME ★ · ★ About ME ★ · ★ About ME ★ · ★ About ME ★ · ★ About
-          ME ★ · ★ About ME ★ · ★ About ME ★ · ★ About ME ★ · ★ About ME ★ · ★
-          About ME ★ · ★ About ME ★ ·
+          · ★ Skills ★ · ★ Skills ★ · ★ Skills ★ · ★ Skills ★ · ★ Skills ★ · ★
+          Skills ★ · ★ Skills ★ · ★ Skills ★ · ★ Skills ★ · ★ Skills ★ · ★
+          Skills ★ ·
         </div>
         <div
           className="md:text-8xl text-6xl pl-5 bg-col1 text-col5 py-5"
-          id="aboutme"
+          id="skills"
         >
-          About Me
-          <section className="text-3xl">
-            <h2 className="text-2xl font-semibold mb-4">Education</h2>
-            <div>
-              Bachelor of Technology in Computer Science and Engineering
-            </div>
-            <p className="text-muted-foreground">
-              Vellore Institute of Technology, Vellore
-            </p>
-            <p className="text-muted-foreground">Expected Graduation: 2026</p>
-            <p className="font-medium">CGPA: 8.97</p>
-          </section>
+          Skills
+          <div className="grid grid-cols-1 text-xl sm:grid-cols-2 xl:grid-cols-3 gap-6 pr-5 mt-3">
+            {skillGroups.map((group) => (
+              <div key={group.title}>
+                <h3 className="font-semibold text-2xl">{group.title}</h3>
+                <ul className="list-disc pl-4">
+                  {group.skills.map((skill) => (
+                    <li key={skill}>{skill}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
         <div className="bg-col4 text-col5 text-xl font-bold w-full whitespace-nowrap overflow-hidden">
           · ★ Contact ★ · ★ Contact ★ · ★ Contact ★ · ★ Contact ★ · ★ Contact ★

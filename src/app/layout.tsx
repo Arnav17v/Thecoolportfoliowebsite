@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "The Cool Portfolio Website",
+  title: "Arnav Verma | Software Developer",
   description:
-    "Showcasing amazing projects and skills. Built with passion and creativity.",
+    "Portfolio of Arnav Verma, a software developer building AI-powered web products, commerce backends, and computer vision tools.",
 };
 
 export default function RootLayout({
