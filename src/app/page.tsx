@@ -145,7 +145,7 @@ export default function Home() {
             <div className="py-5 px-3 flex justify-center items-center text-2xl sm:text-3xl bg-col1 rounded-xl">
               <a href="#skills">Skills</a>
             </div>
-            <a href="/resume.pdf" target="_blank">
+            <a href="https://drive.google.com/file/d/1VzmEDh-ARNyphnW4-VPTZSxu8Y7yq9Gv/view?usp=drive_link" target="_blank">
               <div className="py-5 px-3 flex justify-center items-center text-2xl sm:text-3xl bg-col1 rounded-xl">
                 Resume
               </div>
