@@ -46,50 +46,82 @@ export default function Home() {
   ];
 
   const projects = [
-    {
-      title: "StudyLens",
-      subtitle: "AI Study Monitor",
-      link: "https://lockedin-eight.vercel.app/",
-      repo: "https://github.com/Arnav17v/studylens-model-app",
-      pitch: "Privacy-first desktop app that monitors student focus locally through real-time webcam analysis.",
-      tech: ["Python", "OpenCV", "dlib", "DeepFace", "FastAPI"],
-      impact: [
-        {
-          label: "Built",
-          text: "Real-time webcam focus tracking with a Tkinter dashboard.",
-        },
-        {
-          label: "Integrated",
-          text: "Drowsiness detection and facial emotion analysis for attention scoring.",
-        },
-        {
-          label: "Shipped",
-          text: "macOS executables with optional secure backend session uploads.",
-        },
-      ],
-    },
-    {
-      title: "Real-Time Drowsiness Detection System",
-      subtitle: "Collaborative Computer Vision Monitoring System",
-      repo: "https://github.com/Arnav17v",
-      pitch: "Production-ready monitoring platform for multi-device drowsiness detection and live operator visibility.",
-      tech: ["Docker", "AWS EC2", "Flask", "Socket.IO", "Python"],
-      impact: [
-        {
-          label: "Containerized",
-          text: "Multi-stage Docker builds with health checks and persistent model storage.",
-        },
-        {
-          label: "Automated",
-          text: "AWS EC2 deployment with Bash scripts, systemd restart, and UFW rules.",
-        },
-        {
-          label: "Architected",
-          text: "Central Flask dashboard with real-time streaming and REST APIs.",
-        },
-      ],
-    },
-  ];
+  {
+    title: "Get Uncooked",
+    subtitle: "AI Interview Preparation Platform",
+    link: "https://getuncooked.pro",
+    repo: "",
+    pitch:
+      "Live AI-powered interview preparation platform that provides resume analysis, personalized interview questions, adaptive quizzes, and structured day-by-day preparation plans.",
+    tech: [
+      "Next.js 15",
+      "FastAPI",
+      "PostgreSQL",
+      "Gemini",
+      "Groq",
+      "SSE",
+    ],
+    impact: [
+      {
+        label: "Built",
+        text: "Developed a production AI interview prep SaaS as the sole full-stack developer with resume scoring, red-flag rewrites, adaptive quizzes, and personalized prep plans.",
+      },
+      {
+        label: "Optimized",
+        text: "Reduced LLM requests by ~3× through bundled resume analysis and streamed live progress using Server-Sent Events for a faster user experience.",
+      },
+      {
+        label: "Engineered",
+        text: "Cut quiz generation time by ~2× with asyncio parallelization and implemented Gemini→Groq failover with JSON repair for resilient AI responses.",
+      },
+    ],
+  },
+  {
+    title: "StudyLens",
+    subtitle: "AI Study Monitor",
+    link: "https://lockedin-eight.vercel.app/",
+    repo: "https://github.com/Arnav17v/studylens-model-app",
+    pitch:
+      "Privacy-first desktop app that monitors student focus locally through real-time webcam analysis.",
+    tech: ["Python", "OpenCV", "dlib", "DeepFace", "FastAPI"],
+    impact: [
+      {
+        label: "Built",
+        text: "Real-time webcam focus tracking with a Tkinter dashboard.",
+      },
+      {
+        label: "Integrated",
+        text: "Drowsiness detection and facial emotion analysis for attention scoring.",
+      },
+      {
+        label: "Shipped",
+        text: "macOS executables with optional secure backend session uploads.",
+      },
+    ],
+  },
+  {
+    title: "Real-Time Drowsiness Detection System",
+    subtitle: "Collaborative Computer Vision Monitoring System",
+    repo: "https://github.com/Arnav17v",
+    pitch:
+      "Production-ready monitoring platform for multi-device drowsiness detection and live operator visibility.",
+    tech: ["Docker", "AWS EC2", "Flask", "Socket.IO", "Python"],
+    impact: [
+      {
+        label: "Containerized",
+        text: "Multi-stage Docker builds with health checks and persistent model storage.",
+      },
+      {
+        label: "Automated",
+        text: "AWS EC2 deployment with Bash scripts, systemd restart, and UFW rules.",
+      },
+      {
+        label: "Architected",
+        text: "Central Flask dashboard with real-time streaming and REST APIs.",
+      },
+    ],
+  },
+];
 
   const skillGroups = [
     {
