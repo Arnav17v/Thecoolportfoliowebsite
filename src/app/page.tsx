@@ -132,7 +132,7 @@ export default function Home() {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleCopy = async (text, label) => {
+  const handleCopy = async (text: string, label: string) => {
     try {
       await navigator.clipboard.writeText(text);
       setToast(`${label} copied!`);
