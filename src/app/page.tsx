@@ -1,5 +1,7 @@
+"use client"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import Link from "next/link";
 import {
   Award,
@@ -11,6 +13,7 @@ import {
   Linkedin,
   Mail,
   Phone,
+  Copy
 } from "lucide-react";
 
 export default function Home() {
@@ -46,82 +49,107 @@ export default function Home() {
   ];
 
   const projects = [
-  {
-    title: "Get Uncooked",
-    subtitle: "AI Interview Preparation Platform",
-    link: "https://getuncooked.pro",
-    repo: "",
-    pitch:
-      "Live AI-powered interview preparation platform that provides resume analysis, personalized interview questions, adaptive quizzes, and structured day-by-day preparation plans.",
-    tech: [
-      "Next.js 15",
-      "FastAPI",
-      "PostgreSQL",
-      "Gemini",
-      "Groq",
-      "SSE",
-    ],
-    impact: [
-      {
-        label: "Built",
-        text: "Developed a production AI interview prep SaaS as the sole full-stack developer with resume scoring, red-flag rewrites, adaptive quizzes, and personalized prep plans.",
-      },
-      {
-        label: "Optimized",
-        text: "Reduced LLM requests by ~3× through bundled resume analysis and streamed live progress using Server-Sent Events for a faster user experience.",
-      },
-      {
-        label: "Engineered",
-        text: "Cut quiz generation time by ~2× with asyncio parallelization and implemented Gemini→Groq failover with JSON repair for resilient AI responses.",
-      },
-    ],
-  },
-  {
-    title: "StudyLens",
-    subtitle: "AI Study Monitor",
-    link: "https://lockedin-eight.vercel.app/",
-    repo: "https://github.com/Arnav17v/studylens-model-app",
-    pitch:
-      "Privacy-first desktop app that monitors student focus locally through real-time webcam analysis.",
-    tech: ["Python", "OpenCV", "dlib", "DeepFace", "FastAPI"],
-    impact: [
-      {
-        label: "Built",
-        text: "Real-time webcam focus tracking with a Tkinter dashboard.",
-      },
-      {
-        label: "Integrated",
-        text: "Drowsiness detection and facial emotion analysis for attention scoring.",
-      },
-      {
-        label: "Shipped",
-        text: "macOS executables with optional secure backend session uploads.",
-      },
-    ],
-  },
-  {
-    title: "Real-Time Drowsiness Detection System",
-    subtitle: "Collaborative Computer Vision Monitoring System",
-    repo: "https://github.com/Arnav17v",
-    pitch:
-      "Production-ready monitoring platform for multi-device drowsiness detection and live operator visibility.",
-    tech: ["Docker", "AWS EC2", "Flask", "Socket.IO", "Python"],
-    impact: [
-      {
-        label: "Containerized",
-        text: "Multi-stage Docker builds with health checks and persistent model storage.",
-      },
-      {
-        label: "Automated",
-        text: "AWS EC2 deployment with Bash scripts, systemd restart, and UFW rules.",
-      },
-      {
-        label: "Architected",
-        text: "Central Flask dashboard with real-time streaming and REST APIs.",
-      },
-    ],
-  },
-];
+    {
+      title: "Get Uncooked",
+      subtitle: "AI Interview Preparation Platform",
+      link: "https://getuncooked.pro",
+      repo: "",
+      pitch:
+        "Live AI-powered interview preparation platform that provides resume analysis, personalized interview questions, adaptive quizzes, and structured day-by-day preparation plans.",
+      tech: [
+        "Next.js 15",
+        "FastAPI",
+        "PostgreSQL",
+        "Gemini",
+        "Groq",
+        "SSE",
+      ],
+      impact: [
+        {
+          label: "Built",
+          text: "Developed a production AI interview prep SaaS as the sole full-stack developer with resume scoring, red-flag rewrites, adaptive quizzes, and personalized prep plans.",
+        },
+        {
+          label: "Optimized",
+          text: "Reduced LLM requests by ~3× through bundled resume analysis and streamed live progress using Server-Sent Events for a faster user experience.",
+        },
+        {
+          label: "Engineered",
+          text: "Cut quiz generation time by ~2× with asyncio parallelization and implemented Gemini→Groq failover with JSON repair for resilient AI responses.",
+        },
+      ],
+    },
+    {
+      title: "StudyLens",
+      subtitle: "AI Study Monitor",
+      link: "https://lockedin-eight.vercel.app/",
+      repo: "https://github.com/Arnav17v/studylens-model-app",
+      pitch:
+        "Privacy-first desktop app that monitors student focus locally through real-time webcam analysis.",
+      tech: ["Python", "OpenCV", "dlib", "DeepFace", "FastAPI"],
+      impact: [
+        {
+          label: "Built",
+          text: "Real-time webcam focus tracking with a Tkinter dashboard.",
+        },
+        {
+          label: "Integrated",
+          text: "Drowsiness detection and facial emotion analysis for attention scoring.",
+        },
+        {
+          label: "Shipped",
+          text: "macOS executables with optional secure backend session uploads.",
+        },
+      ],
+    },
+    {
+      title: "Real-Time Drowsiness Detection System",
+      subtitle: "Collaborative Computer Vision Monitoring System",
+      repo: "https://github.com/Arnav17v",
+      pitch:
+        "Production-ready monitoring platform for multi-device drowsiness detection and live operator visibility.",
+      tech: ["Docker", "AWS EC2", "Flask", "Socket.IO", "Python"],
+      impact: [
+        {
+          label: "Containerized",
+          text: "Multi-stage Docker builds with health checks and persistent model storage.",
+        },
+        {
+          label: "Automated",
+          text: "AWS EC2 deployment with Bash scripts, systemd restart, and UFW rules.",
+        },
+        {
+          label: "Architected",
+          text: "Central Flask dashboard with real-time streaming and REST APIs.",
+        },
+      ],
+    },
+  ];
+  const [toast, setToast] = useState("");
+  const [toastVisible, setToastVisible] = useState(false);
+
+  const scrollToContact = () => {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleCopy = async (text, label) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setToast(`${label} copied!`);
+      setToastVisible(true);
+
+      setTimeout(() => setToastVisible(false), 2000);
+      setTimeout(() => setToast(""), 2300);
+
+      scrollToContact();
+    } catch (err) {
+      setToast("Copy failed");
+      setToastVisible(true);
+      setTimeout(() => setToastVisible(false), 2000);
+      setTimeout(() => setToast(""), 2300);
+    }
+  };
+
 
   const skillGroups = [
     {
@@ -167,25 +195,37 @@ export default function Home() {
             </div>
           </div>
           <div className="text-2xl mt-3 max-w-[30rem]">
-            Software developer building AI-powered web products, commerce
-            backends, and computer vision tools.
+            I build AI-powered products end to end — from LLM pipelines to the full-stack apps that ship them
           </div>
-          <div className="grid grid-cols-2 text-col5 gap-1 mt-10">
-            <div className="py-5 px-3 flex justify-center items-center text-2xl sm:text-3xl bg-col1 rounded-xl">
-              <a href="#projects">Projects</a>
-            </div>
-            <div className="py-5 px-3 flex justify-center items-center text-2xl sm:text-3xl bg-col1 rounded-xl">
-              <a href="#skills">Skills</a>
-            </div>
+          <div className="text-col5 gap-1 mt-10 mb-10">
             <a href="https://drive.google.com/file/d/1VzmEDh-ARNyphnW4-VPTZSxu8Y7yq9Gv/view?usp=drive_link" target="_blank">
-              <div className="py-5 px-3 flex justify-center items-center text-2xl sm:text-3xl bg-col1 rounded-xl">
+              <button className="learn-more">
                 Resume
-              </div>
+              </button>
             </a>
-            <div className="py-5 px-3 flex justify-center items-center text-2xl sm:text-3xl bg-col1 rounded-xl">
-              <a href="#contact">Contact Me</a>
+          </div>
+          <div className="pl-1 pt-2 text-xl flex flex-col gap-4">
+            <div
+              className="flex items-center cursor-pointer w-fit"
+              onClick={() => handleCopy("arnavverma1204@gmail.com", "Email")}
+            >
+              <Mail className="mr-2 h-4 w-4" /> arnavverma1204@gmail.com
+              <span className="pl-2">
+                <Copy className="bg-col1 p-1 rounded-sm text-col5" size={22} />
+              </span>
+            </div>
+
+            <div
+              className="flex items-center cursor-pointer w-fit"
+              onClick={() => handleCopy("7814069496", "Phone number")}
+            >
+              <Phone className="mr-2 h-4 w-4" /> 7814069496
+              <span className="pl-2">
+                <Copy className="bg-col1 p-1 rounded-sm text-col5" size={22} />
+              </span>
             </div>
           </div>
+
         </div>
         <div className="md:absolute md:rotate-90 md:top-[442px] md:left-[-408px] h-fit">
           <div className="marquee-text bg-col2 py-2">
@@ -241,7 +281,7 @@ export default function Home() {
               Vellore Institute of Technology, Vellore
             </p>
             <p className="text-muted-foreground">Expected Graduation: 2026</p>
-            <p className="font-medium">CGPA: 8.85 / 10.0</p>
+            <p className="font-medium">CGPA: 8.89 / 10.0</p>
           </section>
           <section className="mt-8 text-2xl pr-5">
             <h2 className="text-3xl font-semibold mb-4">Achievement</h2>
@@ -280,7 +320,7 @@ export default function Home() {
         </div>
         <div className="md:text-8xl text-6xl ml-5 my-5">
           Work Experience
-          <section className="relative mt-5 grid gap-6 pr-3 text-xl before:absolute before:left-4 before:top-4 before:hidden before:h-[calc(100%-2rem)] before:w-1 before:bg-col4 md:before:block">
+          <section className="relative mt-5 grid gap-6 pr-3 text-6xl before:absolute before:left-4 before:top-16 before:hidden before:h-[calc(100%-2rem)] before:w-1 before:bg-col4 md:before:block">
             {experience.map((role) => (
               <Card
                 className="relative bg-col5 border-4 border-col4 shadow-none transition-all duration-500 hover:-translate-y-1 hover:bg-col4 hover:text-col5 md:ml-12"
@@ -477,6 +517,14 @@ export default function Home() {
           </section>
         </div>
       </div>
+      {toast && (
+        <div
+          className={`fixed bottom-6 left-1/2 -translate-x-1/2 bg-col2 text-col5 px-4 py-2 rounded-full shadow-lg text-sm font-medium z-50 transition-opacity duration-300 ${toastVisible ? "opacity-100" : "opacity-0"
+            }`}
+        >
+          {toast}
+        </div>
+      )}
     </div>
   );
 }
