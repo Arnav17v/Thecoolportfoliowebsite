@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { title, description, siteUrl, structuredData } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,9 +14,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Arnav Verma | Software Developer",
-  description:
-    "Portfolio of Arnav Verma, a software developer building AI-powered web products, commerce backends, and computer vision tools.",
+  title,
+  description,
+  ...(siteUrl ? { metadataBase: new URL(siteUrl), alternates: { canonical: "/" } } : {}),
+  authors: [{ name: "Arnav Verma" }],
+  openGraph: {
+    title,
+    description,
+    type: "profile",
+    firstName: "Arnav",
+    lastName: "Verma",
+    siteName: "Arnav Verma",
+    locale: "en_US",
+    ...(siteUrl ? { url: `${siteUrl}/` } : {}),
+  },
+  twitter: { card: "summary", title, description },
 };
 
 export default function RootLayout({
@@ -28,6 +41,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
+        />
         {children}
       </body>
     </html>

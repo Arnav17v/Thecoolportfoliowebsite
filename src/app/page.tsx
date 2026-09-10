@@ -1,8 +1,9 @@
 "use client"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { createTimeline, stagger } from 'animejs';
 import {
   Award,
   BriefcaseBusiness,
@@ -17,6 +18,24 @@ import {
 } from "lucide-react";
 
 export default function Home() {
+  const nameRef = useRef(null);
+  const titleRef = useRef(null);
+  const introRef = useRef(null);
+  const resumeRef = useRef(null);
+  const contactRef = useRef(null);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const tl = createTimeline({ defaults: { ease: 'outExpo', duration: 1000 } });
+    tl.add(nameRef.current!, { translateY: [30, 0], delay: 200 })
+      .add(titleRef.current!, { translateY: [20, 0] }, '-=800')
+      .add(introRef.current!, { translateY: [15, 0] }, '-=700')
+      .add([resumeRef.current!, contactRef.current!], {
+        translateY: [10, 0], delay: stagger(100)
+      }, '-=600');
+    return () => { tl.revert(); };
+  }, []);
+
   const experience = [
     {
       title: "Fullstack Developer (Freelance)",
@@ -105,7 +124,7 @@ export default function Home() {
     {
       title: "Real-Time Drowsiness Detection System",
       subtitle: "Collaborative Computer Vision Monitoring System",
-      repo: "https://github.com/Arnav17v",
+      repo: "",
       pitch:
         "Production-ready monitoring platform for multi-device drowsiness detection and live operator visibility.",
       tech: ["Docker", "AWS EC2", "Flask", "Socket.IO", "Python"],
@@ -142,7 +161,7 @@ export default function Home() {
       setTimeout(() => setToast(""), 2300);
 
       scrollToContact();
-    } catch (err) {
+    } catch {
       setToast("Copy failed");
       setToastVisible(true);
       setTimeout(() => setToastVisible(false), 2000);
@@ -184,27 +203,32 @@ export default function Home() {
   ];
 
   return (
-    <div className="md:h-screen md:flex md:items-center md:justify-center">
-      <div className="overflow-hidden relative sm:flex-grow-0 sm:w-fit sm:h-lvh">
+    <main className="md:h-screen md:flex md:items-center md:justify-center">
+      <div className="overflow-hidden relative sm:flex-grow-0 sm:w-fit md:h-lvh md:overflow-y-auto">
         <div className="p-5 md:pr-[3rem]">
           <div className="pb-4">
-            <div className="text-3xl">hi I'm</div>
-            <div className="text-7xl max-w-fit sm:text-8xl md:text-[10rem]">
+            <div className="text-3xl" ref={titleRef}>hi I&apos;m</div>
+            <h1 className="text-7xl max-w-fit sm:text-8xl md:text-[10rem]" ref={nameRef}>
               <span className="px-2">Arnav</span> <br />{" "}
               <span className="bg-col2 text-col5 px-2 rounded-xl">Verma</span>
-            </div>
+            </h1>
           </div>
-          <div className="text-2xl mt-3 max-w-[30rem]">
-            I build AI-powered products end to end — from LLM pipelines to the full-stack apps that ship them
+          <div className="text-2xl mt-3 max-w-[30rem]" ref={introRef}>
+            2026 new-grad software engineer focused on backend systems and AI-powered products.
           </div>
-          <div className="text-col5 gap-1 mt-10 mb-10">
-            <a href="https://drive.google.com/file/d/1VzmEDh-ARNyphnW4-VPTZSxu8Y7yq9Gv/view?usp=drive_link" target="_blank">
-              <button className="learn-more">
-                Resume
-              </button>
+          <nav aria-label="Portfolio sections" className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-lg underline">
+            <a href="#aboutme">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Hire / Contact</a>
+          </nav>
+          <div className="text-col5 gap-1 mt-6 mb-6" ref={resumeRef}>
+            <a href="https://drive.google.com/file/d/1VzmEDh-ARNyphnW4-VPTZSxu8Y7yq9Gv/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+              <span className="learn-more">View resume</span>
             </a>
           </div>
-          <div className="pl-1 pt-2 text-xl flex flex-col gap-4">
+          <div className="pl-1 pt-2 text-xl flex flex-col gap-4" ref={contactRef}>
             <div
               className="flex items-center cursor-pointer w-fit"
               onClick={() => handleCopy("arnavverma1204@gmail.com", "Email")}
@@ -266,14 +290,21 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="overflow-y-scroll md:w-1/2 ml-0 flex-grow h-lvh ">
+      <div className="md:overflow-y-auto md:w-1/2 ml-0 flex-grow md:h-lvh ">
         <div
           className="md:text-8xl text-6xl pl-5 bg-col1 text-col5 py-5"
           id="aboutme"
         >
-          About Me
+          <h2>About Me</h2>
+          <p className="text-xl leading-relaxed pr-5 my-5">
+            I’m Arnav Verma, a software engineering candidate expecting to graduate
+            in 2026 from VIT Vellore. I’m interested in new-grad software engineer
+            and backend engineer roles, building APIs, PostgreSQL data models,
+            commerce integrations, and reliable AI workflows. My internship,
+            freelance work, and projects below show what I’ve built.
+          </p>
           <section className="text-3xl">
-            <h2 className="text-2xl font-semibold mb-4">Education</h2>
+            <h3 className="text-2xl font-semibold mb-4">Education</h3>
             <div>
               Bachelor of Technology in Computer Science and Engineering
             </div>
@@ -284,7 +315,7 @@ export default function Home() {
             <p className="font-medium">CGPA: 8.89 / 10.0</p>
           </section>
           <section className="mt-8 text-2xl pr-5">
-            <h2 className="text-3xl font-semibold mb-4">Achievement</h2>
+            <h3 className="text-3xl font-semibold mb-4">Achievement</h3>
             <Card className="bg-col5 text-col1 border-4 border-col4 shadow-none">
               <CardHeader>
                 <CardTitle className="flex items-start gap-3 text-2xl">
@@ -305,7 +336,7 @@ export default function Home() {
             </Card>
           </section>
           <section className="mt-8 text-2xl pr-5">
-            <h2 className="text-3xl font-semibold mb-4">Certifications</h2>
+            <h3 className="text-3xl font-semibold mb-4">Certifications</h3>
             <ul className="list-disc pl-6 space-y-3">
               {certifications.map((certification) => (
                 <li key={certification}>{certification}</li>
@@ -319,7 +350,7 @@ export default function Home() {
           · ★ Projects ★ · ★ Projects ★ ·
         </div>
         <div className="md:text-8xl text-6xl ml-5 my-5">
-          Work Experience
+          <h2 id="experience">Work Experience</h2>
           <section className="relative mt-5 grid gap-6 pr-3 text-6xl before:absolute before:left-4 before:top-16 before:hidden before:h-[calc(100%-2rem)] before:w-1 before:bg-col4 md:before:block">
             {experience.map((role) => (
               <Card
@@ -349,6 +380,9 @@ export default function Home() {
                   <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">
                     {role.summary}
                   </p>
+                  <ul className="list-disc pl-5 space-y-2 text-lg">
+                    {role.description.map((detail) => <li key={detail}>{detail}</li>)}
+                  </ul>
                   <div className="flex flex-wrap gap-2">
                     {role.highlights.map((highlight) => (
                       <span
@@ -366,9 +400,9 @@ export default function Home() {
               </Card>
             ))}
           </section>
-          <div className="text-5xl font-bold pt-8" id="projects">
+          <h2 className="text-5xl font-bold pt-8" id="projects">
             Projects
-          </div>
+          </h2>
           <section className="mt-5 text-xl">
             <div className="grid gap-6">
               {projects.map((project) => (
@@ -396,21 +430,21 @@ export default function Home() {
                               size="sm"
                               asChild
                             >
-                              <Link href={project.link} target="_blank">
+                              <Link aria-label={`Visit ${project.title}`} href={project.link} target="_blank" rel="noopener noreferrer">
                                 <ExternalLink className="h-4 w-4" />
                               </Link>
                             </Button>
                           ) : null}
-                          <Button
+                          {project.repo && <Button
                             className="bg-col1 text-col5"
                             variant="outline"
                             size="sm"
                             asChild
                           >
-                            <Link href={project.repo} target="_blank">
+                            <Link aria-label={`View ${project.title} source on GitHub`} href={project.repo} target="_blank" rel="noopener noreferrer">
                               <Github className="h-4 w-4" />
                             </Link>
-                          </Button>
+                          </Button>}
                         </div>
                       </span>
                     </CardTitle>
@@ -457,7 +491,7 @@ export default function Home() {
           className="md:text-8xl text-6xl pl-5 bg-col1 text-col5 py-5"
           id="skills"
         >
-          Skills
+          <h2>Skills</h2>
           <div className="grid grid-cols-1 text-xl sm:grid-cols-2 xl:grid-cols-3 gap-6 pr-5 mt-3">
             {skillGroups.map((group) => (
               <div key={group.title}>
@@ -477,13 +511,20 @@ export default function Home() {
           · ★ Contact ★ ·
         </div>
         <div className="md:text-8xl text-6xl ml-5 my-5" id="contact">
-          Contact Me{" "}
+          <h2>Let’s Work Together</h2>
           <section className="space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+            <p className="text-4xl md:text-5xl font-bold tracking-tight">
               Arnav Verma
-            </h1>
+            </p>
             <p className="text-xl text-muted-foreground">
-              Computer Science Student & Developer
+              Hire Arnav Verma · 2026 new-grad software engineering candidate
+            </p>
+            <p className="text-lg leading-relaxed pr-5">
+              Looking for the best new grad 2026 has to offer for your team?
+              Explore my <a href="#projects" className="underline">projects</a> and{' '}
+              <a href="#experience" className="underline">engineering experience</a>
+              {' '}to evaluate the fit. I’d love to discuss software engineering
+              and backend roles where I can contribute.
             </p>
             <div className="flex gap-4 flex-wrap">
               <Button className="bg-col1 text-col5" variant="outline" asChild>
@@ -499,7 +540,7 @@ export default function Home() {
                 </Link>
               </Button>
               <Button className="bg-col1 text-col5" variant="outline" asChild>
-                <Link href="https://github.com/Arnav17v" target="_blank">
+                <Link href="https://github.com/Arnav17v" target="_blank" rel="noopener noreferrer">
                   <Github className="mr-2 h-4 w-4" />
                   GitHub
                 </Link>
@@ -507,7 +548,7 @@ export default function Home() {
               <Button className="bg-col1 text-col5" variant="outline" asChild>
                 <Link
                   href="https://www.linkedin.com/in/arnav17v"
-                  target="_blank"
+                  target="_blank" rel="noopener noreferrer"
                 >
                   <Linkedin className="mr-2 h-4 w-4" />
                   LinkedIn
@@ -525,6 +566,6 @@ export default function Home() {
           {toast}
         </div>
       )}
-    </div>
+    </main>
   );
 }
