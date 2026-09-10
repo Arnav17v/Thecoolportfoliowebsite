@@ -1,6 +1,5 @@
-// Set this to the preferred production origin before deploying.
 const configuredUrl = process.env.SITE_URL;
-export const siteUrl = configuredUrl ? new URL(configuredUrl).origin : undefined;
+export const siteUrl = new URL(configuredUrl ?? "https://tcpw.vercel.app").origin;
 export const title = "Arnav Verma | 2026 New-Grad Software Engineer";
 export const description =
   "Meet Arnav Verma, a 2026 new-grad software engineering candidate focused on backend systems and AI products. Explore projects, experience, and hiring contact.";
